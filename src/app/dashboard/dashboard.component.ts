@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatimService } from '../datim.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,37 +15,11 @@ export class DashboardComponent implements OnInit {
 
   filtering: boolean = false;
 
-  records = [
-    {
-      hospital_id: 1,
-      hospitalName: "Maseno Mission",
-      newBornNumber: 10,
-      deathNumber: 2,
-      numberOfPatientsServed: 100,
-      coronaCases: 1,
-      date: "2022-02-06"
-    },
-    {
-      hospital_id: 2,
-      hospitalName: "Luanda Mission",
-      newBornNumber: 8,
-      deathNumber: 0,
-      numberOfPatientsServed: 110,
-      coronaCases: 1,
-      date: "2022-02-06"
-    },
-    {
-      hospital_id: 3,
-      hospitalName: "Kitui General",
-      newBornNumber: 20,
-      deathNumber: 0,
-      numberOfPatientsServed: 200,
-      coronaCases: 2,
-      date: "2022-03-06"
-    }
-  ]
+  records: any;
 
-  constructor() { }
+  constructor(
+    private datim: DatimService
+  ) { }
 
 
   filterByHospitalName() {
@@ -100,7 +75,7 @@ export class DashboardComponent implements OnInit {
     if (this.startDate != undefined && this.endDate == undefined) {
       const startDateAsDate = new Date(this.startDate);
 
-      this.filteredRecords = this.records.filter((record) => {
+      this.filteredRecords = this.records.filter((record:any) => {
         const date = new Date(record.date);
         return date >= startDateAsDate;
       });
@@ -112,7 +87,7 @@ export class DashboardComponent implements OnInit {
     if (this.startDate == undefined && this.endDate != undefined) {
       const endDateAsDate = new Date(this.endDate);
 
-      this.filteredRecords = this.records.filter((record) => {
+      this.filteredRecords = this.records.filter((record:any) => {
         const date = new Date(record.date);
         return date <= endDateAsDate;
       });
@@ -126,7 +101,7 @@ export class DashboardComponent implements OnInit {
       const startDateAsDate = new Date(this.startDate);
       const endDateAsDate = new Date(this.endDate);
 
-      this.filteredRecords = this.records.filter((record) => {
+      this.filteredRecords = this.records.filter((record:any) => {
         const date = new Date(record.date);
         return date >= startDateAsDate && date <= endDateAsDate;
       });
@@ -137,6 +112,15 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.datim.getAllRecords().subscribe(
+      (res) => {
+        console.log(res);
+        this.records = res.records;
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
   }
 
 }
