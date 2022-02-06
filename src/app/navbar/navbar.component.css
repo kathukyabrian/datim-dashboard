@@ -1,0 +1,30 @@
+.container{
+    background-color: brown;
+    margin: 1rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.logo-area{
+    padding: 1rem;
+    margin: 0.5rem;
+}
+.logo{
+    height: 5rem;
+    width: 5rem;
+}
+.org{
+    
+    padding: 0 0.9rem 3rem 0.9rem;
+    margin: 1rem 3rem 1rem 3rem;
+    height: 5rem;
+}
+.org-name{
+    font-size: 3rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
