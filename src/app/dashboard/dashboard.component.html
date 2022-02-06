@@ -3,13 +3,28 @@
 
     <div class="row g-3">
         <div class="col">
-            <input type="text" (keyup)="filterByHospitalName()" [(ngModel)]="hospitalName" class="form-control" placeholder="Hospital Name" aria-label="Hospital Name">
+            Hospital Name
         </div>
         <div class="col">
-            <input type="date" class="form-control" placeholder="Start Date" aria-label="Start Date">
+            Start Date
         </div>
         <div class="col">
-            <input type="date" class="form-control" placeholder="End Date" aria-label="End Date">
+            End Date
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col">
+            <input type="text" (keyup)="filterByHospitalName()" [(ngModel)]="hospitalName" class="form-control"
+                placeholder="Hospital Name" aria-label="Hospital Name">
+        </div>
+        <div class="col">
+            <input (change)="filterByDate()" type="date" class="form-control" [(ngModel)]="startDate"
+                placeholder="Start Date" aria-label="Start Date">
+        </div>
+        <div class="col">
+            <input (change)="filterByDate()" type="date" class="form-control" [(ngModel)]="endDate"
+                placeholder="End Date" aria-label="End Date">
         </div>
     </div>
 
@@ -27,7 +42,7 @@
 
         <tbody *ngIf="!filtering">
             <tr *ngFor="let record of records">
-                <th scope="row">{{record.hospitalId}}</th>
+                <th scope="row">{{record.hospital_id}}</th>
                 <td>{{record.hospitalName}}</td>
                 <td class="text-success font-weight-bold">{{record.newBornNumber}}</td>
                 <td class="text-danger font-weight-bold">{{record.deathNumber}}</td>
@@ -38,7 +53,7 @@
 
         <tbody *ngIf="filtering">
             <tr *ngFor="let record of filteredRecords">
-                <th scope="row">{{record.hospitalId}}</th>
+                <th scope="row">{{record.hospital_id}}</th>
                 <td>{{record.hospitalName}}</td>
                 <td class="text-success font-weight-bold">{{record.newBornNumber}}</td>
                 <td class="text-danger font-weight-bold">{{record.deathNumber}}</td>
@@ -46,5 +61,6 @@
                 <td>{{record.coronaCases}}</td>
             </tr>
         </tbody>
+
     </table>
 </div>
