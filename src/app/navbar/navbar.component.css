@@ -1,6 +1,5 @@
-.container{
+.custom-container{
     background-color: brown;
-    margin: 1rem;
     padding: 0.5rem;
     display: flex;
     flex-direction: row;
@@ -27,4 +26,6 @@
     font-size: 3rem;
     margin-left: 1rem;
     margin-right: 1rem;
+    color: white;
+    font-weight: 700;
 }
